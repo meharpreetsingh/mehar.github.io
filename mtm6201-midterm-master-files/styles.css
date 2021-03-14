@@ -1,5 +1,15 @@
+/*
+Note: I have used auto-prefixer to make the css for all the browsers. I used the plugin and also online prefixer
+I find it really interesting for no reason that keyframes also need to be prefixed.
+*/
+
 /* CSS ANIMATIONS */
 
+/* These animations are inspired by vibrations, for gaining attention of user */
+/* The animation is simple to understand,
+1. We dont want to add any styling at the end of animation and for making it smooth, 0% and 100% contain no changes in transform.
+2. At different interwals, I added transform: translate property to add the small movements that look like vibrations (I tried my best)
+*/
 @-webkit-keyframes cta-vibrate {
   0% {
     -webkit-transform: translate(0);
@@ -52,6 +62,15 @@
     transform: translate(0);
   }
 }
+
+/* 
+Bounce-top and Bounce-bottom are also the animation I generally saw online on diferent sites, so I decided to make it.
+
+Explained: :-
+1. Starting with the element off the position
+2. Getting the element to the actual position with timing function, gives illustion of striking
+3. Changin the position back to off just by small distance make it look like bound with appropriate timing-function
+*/
 
 @-webkit-keyframes bounce-top {
   0% {
@@ -263,35 +282,44 @@
 }
 
 /* CSS Reset */
+/* To make the default padding and margin to zero and box-zizing to border-box
+Border Box property value add the padding and border to the actual width and height of element
+*/
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+/* Default font family is set here as most of the elements inherit this property */
 html,
 body {
   font-family: "Raleway", sans-serif;
 }
+
+/* The default underline property is removed for the anchor tag */
 a {
   text-decoration: none;
 }
 
 /* Container */
-
+/* max-width need to be set to include the elements in desired width and margin property is used to center the elements */
 .container {
   max-width: 1640px;
   margin: 0 auto;
 }
 
 main {
+  /* Every absolute element is position relative to main element (position: relative don't bring and position change to the main) */
   position: relative;
 }
 
 /* NAVIGATION BAR */
 
 nav {
-  position: absolute;
+  /* fixed position to bring the nav out of order and z-index to make it in front of every element on page */
+  position: fixed;
+  z-index: 100;
   background-color: #3c3b3a;
   color: #f2f2f2;
   font-size: 18px;
@@ -301,6 +329,7 @@ nav {
 nav .container {
   margin: 0 auto;
 
+  /* Flex to make the elements (2) position at each end horizontly */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -313,12 +342,12 @@ nav .container {
 }
 
 .nav-links {
+  /* Flex to make the elements not the block */
   display: flex;
-  flex-direction: row;
-  align-content: center;
 }
 .nav-link {
   color: #f2f2f2;
+  /* To align the links center vertically in the nav */
   margin: auto 0;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
@@ -327,12 +356,15 @@ nav .container {
   -o-transition: all 0.5s;
 }
 .nav-link:hover{
+  /* hover effect on links */
     font-weight: bold;
 }
 .nav-link:not(:last-of-type) {
+  /* I used pseudo elements :not and :last-of-type to add margin-right to every element except the last */
   margin-right: 53px;
 }
 .active-page {
+  /* Just a class to change the style of active page link, added in the appropriate link in HTML */
   font-weight: bold;
 }
 
@@ -341,9 +373,11 @@ HEADER SECTION
 ------------ */
 
 header {
+  /* The padding is calculated by adding the height of navigation bar and required difference */
   padding-top: 167px;
 }
 header .container {
+  /* Flex is used to make the elements (2) position at each end horizontly and align center vertically to header */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -352,12 +386,15 @@ header .container {
   margin-bottom: 30px;
 }
 header .container:last-of-type{
+  /* it add the center alignment to the scroll division on homepage */
     justify-content: center;
 }
 .cta-text {
+  /* It is added according to the mockup provided by you respected sir */
   max-width: 536px;
 }
 .cta-text h1 {
+  /* simple text styling and margin according to mockup */
   font-size: 72px;
   font-weight: bold;
   line-height: 85px;
@@ -366,6 +403,7 @@ header .container:last-of-type{
   margin-bottom: 65px;
 }
 .cta-text_para {
+  /* simple text styling and margin according to mockup */
   font-size: 24px;
   color: #3c3b3a;
 
@@ -373,41 +411,49 @@ header .container:last-of-type{
 }
 
 .cta-text_features {
+  /* to use the default flex direction that is row and adding margin */
   display: flex;
   margin-bottom: 65px;
 }
 .cta-text_features-element {
+  /* To center the elements horizontally */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 .cta-text_features-element:not(:last-of-type) {
+  /* Adding the margin to all elements except the last one in feature icons */
   margin-right: 56px;
 }
 .cta-text_features-element_icon {
+  /* those are icons so needed to use the font-size for height and width of icons */
   font-size: 35px;
   color: #3c3b3a;
   margin-bottom: 10px;
 }
 .cta-text_features-element_text {
+  /* simple text styling */
   font-size: 16px;
   color: #26a682;
 }
 
 .cta-img {
+  /* According to mockup */
   max-width: 951px;
 }
 .cta-img img {
+  /* To limit the size according to the parent element */
   width: 100%;
 }
 
 .cta-text_button {
+  /* To make it a reference for position of the button in it */
   position: relative;
 }
 
 .cta-button {
   position: absolute;
+  /* simple text styling */
   font-size: 40px;
   font-weight: bold;
   color: #f2f2f2;
@@ -420,8 +466,12 @@ header .container:last-of-type{
   -ms-border-radius: 35px;
   -o-border-radius: 35px;
   box-shadow: 0px 10px 10px rgba(18, 74, 58, 0.5);
+
+  /* Used the short hand for the animation-name animation-duration animation-timing-function animation-iteration-count animation-fill-mode */
   animation: cta-vibrate 0.3s linear infinite both;
   -webkit-animation: cta-vibrate 0.3s linear infinite both;
+  
+  /* simple state change duration */
   transition: all 1s;
   -webkit-transition: all 1s;
   -moz-transition: all 1s;
@@ -429,6 +479,7 @@ header .container:last-of-type{
   -o-transition: all 1s;
 }
 .cta-button:hover{
+  /* hover effect stops the animation and change background color */
     background-color: #17644e;
     animation: none;
     -webkit-animation: none;
